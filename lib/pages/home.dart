@@ -20,6 +20,13 @@ class _HomeState extends State<Home> {
                   },
                   icon: Icon(Icons.edit_location),
                   label: Text('Edit Location')
+              ),
+              FlatButton.icon(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
+                  icon: Icon(Icons.edit_location),
+                  label: Text('Loading')
               )
             ],
           ),
