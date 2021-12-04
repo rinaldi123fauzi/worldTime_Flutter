@@ -7,6 +7,7 @@ class WorldTime{
   String? time; //the time in that location
   String flag; //url to an asset flag icon
   String url; //location url for api endpoint
+  bool isDaytime = false; //true or false
 
   WorldTime({required this.location, required this.flag, required this.url});
 
@@ -29,10 +30,11 @@ class WorldTime{
       // print(now);
 
       //set time property
+      isDaytime = now.hour > 6 && now.hour < 18 ? true : false;
       time = DateFormat.jm().format(now);
     }catch(e){
       print('caught error : $e');
-      time = 'could not get time data';
+      time = 'could not get time data, please refresh again';
     }
   }
 
