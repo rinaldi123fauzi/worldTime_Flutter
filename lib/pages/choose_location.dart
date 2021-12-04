@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time/services/world_time.dart';
 
 class ChooseLocation extends StatefulWidget {
   const ChooseLocation({Key? key}) : super(key: key);
@@ -10,30 +11,36 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
   int counter = 0;
 
-  void getData() async {
-    //simulate network request for a username
-    // await Future.delayed(Duration(seconds: 3), () {
-    //   print('rinaldi');
-    // });
+  List<WorldTime> locations = [
+    WorldTime(location: 'London', flag: 'london_flag.jpeg', url: 'Europe/London'),
+    WorldTime(location: 'Berlin', flag: 'germany_flag.png', url: 'Europe/Berlin'),
+    WorldTime(location: 'Jakarta', flag: 'indonesia_flag.jpg', url: 'Asia/Jakarta'),
+  ];
 
-    //simulate network request for a username
-    String username = await Future.delayed(Duration(seconds: 3), () {
-      return 'rinaldi';
-    });
-
-    //simulate network request to get bio for the username
-    String bio = await Future.delayed(Duration(seconds: 2), () {
-      return 'fauzi, engineer & alone';
-    });
-
-    print('$username - $bio');
-  }
+  // void getData() async {
+  //   //simulate network request for a username
+  //   // await Future.delayed(Duration(seconds: 3), () {
+  //   //   print('rinaldi');
+  //   // });
+  //
+  //   //simulate network request for a username
+  //   String username = await Future.delayed(Duration(seconds: 3), () {
+  //     return 'rinaldi';
+  //   });
+  //
+  //   //simulate network request to get bio for the username
+  //   String bio = await Future.delayed(Duration(seconds: 2), () {
+  //     return 'fauzi, engineer & alone';
+  //   });
+  //
+  //   print('$username - $bio');
+  // }
 
   @override
   void initState() {//constructor
     // TODO: implement initState
     super.initState();
-    getData();
+    // getData();
     print('hey there!');
   }
 
@@ -53,7 +60,26 @@ class _ChooseLocationState extends State<ChooseLocation> {
             counter += 1;
           });
         },
-        child: Text('counter is $counter'),
+        // child: Text('counter is $counter'),
+        child: ListView.builder(
+          itemCount: locations.length,
+          itemBuilder: (context, index){
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 0.5),
+              child: Card(
+                child: ListTile(
+                  onTap: (){
+                    print(locations[index].location);
+                  },
+                  title: Text(locations[index].location),
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage('assets/${locations[index].flag}'),
+                  ),
+                ),
+              ),
+            );
+          }
+        ),
       ),
     );
   }
