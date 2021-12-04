@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      data['location'],
+                      data != null ? data['location'] : '',
                       style: TextStyle(
                         fontSize: 28.0,
                         letterSpacing: 2.0
@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
                 ),
                 SizedBox(height: 20.0),
                 Text(
-                  data['time'],
+                  data != null ? data['time'] : '',
                   style: TextStyle(
                       fontSize: 50.0,
                   ),
