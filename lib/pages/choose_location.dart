@@ -54,7 +54,6 @@ class _ChooseLocationState extends State<ChooseLocation> {
       'time': instance.time,
       'isDaytime': instance.isDaytime,
     });
-    Navigator.of(context).pushNamedAndRemoveUntil('/location', (Route<dynamic> route) => false);//used error handler for navigator pop (debuglocked)
   }
 
   @override
