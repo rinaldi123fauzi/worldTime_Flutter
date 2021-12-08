@@ -66,6 +66,30 @@ class _HomeState extends State<Home> {
                           ),
                       )
                   ),
+                  FlatButton.icon(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/country');
+                      },
+                      icon: Icon(Icons.water_damage,color: fontColor),
+                      label: Text(
+                        'Country List',
+                        style: TextStyle(
+                          color: fontColor,
+                        ),
+                      )
+                  ),
+                  FlatButton.icon(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/country-flag');
+                      },
+                      icon: Icon(Icons.water_damage,color: fontColor),
+                      label: Text(
+                        'Country Flag',
+                        style: TextStyle(
+                          color: fontColor,
+                        ),
+                      )
+                  ),
                   SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
