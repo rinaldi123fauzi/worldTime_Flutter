@@ -12,11 +12,11 @@ class CountryList extends StatefulWidget {
 
 class _CountryListState extends State<CountryList> {
   Future<List<User>> _getUser() async{
-    var data = await http.get("https://jsonplaceholder.typicode.com/posts");
+    var data = await http.get(Uri.parse("https://countriesnow.space/api/v0.1/countries/flag/images"));
     var jsonData = jsonDecode(data.body);
     List<User> users = [];
-    for(var u in jsonData){
-      User user = User(u["title"]);
+    for(var u in jsonData["data"]){
+      User user = User(u["name"], u["flag"]);
       users.add(user);
     }
     print(users.length);
@@ -27,7 +27,7 @@ class _CountryListState extends State<CountryList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data'),
+        title: Text('Data Dummy'),
       ),
       body: Container(
         child: FutureBuilder(
@@ -41,9 +41,15 @@ class _CountryListState extends State<CountryList> {
               );
             }else {
               return ListView.builder(
+                  itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(snapshot.data[index].title),
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          snapshot.data[index].flag
+                        ),
+                      ),
+                      title: Text(snapshot.data[index].name),
                     );
                   }
               );
@@ -56,7 +62,8 @@ class _CountryListState extends State<CountryList> {
 }
 
 class User{
-  final String title;
+  final String name;
+  final String flag;
 
-  User(this.title);
+  User(this.name, this.flag);
 }
