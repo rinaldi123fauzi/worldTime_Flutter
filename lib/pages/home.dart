@@ -78,6 +78,18 @@ class _HomeState extends State<Home> {
                         ),
                       )
                   ),
+                  FlatButton.icon(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/rfc-api');
+                      },
+                      icon: Icon(Icons.water_damage,color: fontColor),
+                      label: Text(
+                        'Rfc List',
+                        style: TextStyle(
+                          color: fontColor,
+                        ),
+                      )
+                  ),
                   SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
